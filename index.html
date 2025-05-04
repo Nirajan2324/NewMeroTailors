@@ -13,6 +13,11 @@
       background-color: #f9f9f9;
       color: #333;
     }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     header {
       background: #2c3e50;
       color: white;
@@ -22,25 +27,31 @@
     header h1 {
       margin: 0;
     }
+
     section {
       padding: 2rem 1rem;
       max-width: 800px;
       margin: auto;
     }
+
     .services ul {
       list-style-type: square;
       padding-left: 1.2rem;
     }
+
     .contact p {
       margin: 0.5rem 0;
     }
+
     footer {
       text-align: center;
       padding: 1rem;
       background: #333;
       color: white;
     }
-    .image-section {
+
+    .image-section,
+    .video-section {
       position: relative;
       height: 100vh;
       background-size: cover;
@@ -51,41 +62,121 @@
       justify-content: center;
       text-align: center;
     }
-    .image-overlay {
+
+    .image-overlay,
+    .video-overlay {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%;
       background-color: rgba(0, 0, 0, 0.4);
-    }
-    .image-text {
-      position: relative;
       z-index: 1;
+    }
+
+    .image-text,
+    .video-text {
+      position: relative;
+      z-index: 2;
       padding: 2rem;
     }
-    .image-text h2 {
+
+    .image-text h2,
+    .video-text h2 {
       font-size: 2.5rem;
       margin: 0;
+    }
+
+    .video-section video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #2c3e50;
+      color: white;
+      padding-top: 4rem;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .side-menu.open {
+      left: 0;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <nav class="side-menu" id="sideMenu">
+    <a href="#top">Top Page</a>
+    <a href="#access">Access</a>
+    <a href="#services">Our Services</a>
+    <a href="#booking">Order/Booking</a>
+    <a href="#about">About Us</a>
+  </nav>
+
+  <header id="top">
     <h1>New Mero Tailors</h1>
     <p>Perfect Fits, For Perfect Looks<br>
        Resunga-Gulmi Nepal, contact: 9847232071<br> 
        Prem KD
-      </p>
+    </p>
   </header>
 
-  <section class="about">
+  <section class="about" id="about">
     <h2>About Us</h2>
     <p>We are a family-owned tailor shop offering custom fittings, traditional outfits, and modern styling. Located in the heart of town, we’ve proudly served the community since 2005.</p>
   </section>
 
-  <!-- Image 1 -->
+  <div class="video-section">
+    <video autoplay muted loop>
+      <source src="https://cdn.pixabay.com/video/2024/10/18/236959_tiny.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+    <div class="video-text">
+      <h2>Your Clothes, Your Confidence</h2>
+    </div>
+  </div>
+
+  <section style="background-color: #fff; padding: 2rem 1rem; text-align: center; max-width: 800px; margin: auto;">
+    <p style="font-size: 1.2rem;">
+      We specialize in custom-made suits, traditional wear, dresses, and more. We also carry accessories like ties to complete your look – all at reasonable prices.
+      Whether you’re preparing for a special occasion or just updating your wardrobe, we’re here to make sure you look your best.
+    </p>
+  </section>
+
   <div class="image-section" style="background-image: url('https://images.pexels.com/photos/29738314/pexels-photo-29738314/free-photo-of-close-up-view-of-sewing-machine-needle.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
     <div class="image-overlay"></div>
     <div class="image-text">
@@ -93,7 +184,7 @@
     </div>
   </div>
 
-  <section class="services">
+  <section class="services" id="services">
     <h2>Our Services</h2>
     <ul>
       <li>Custom Tailoring (Men & Women)</li>
@@ -103,7 +194,6 @@
     </ul>
   </section>
 
-  <!-- Image 2 -->
   <div class="image-section" style="background-image: url('https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
     <div class="image-overlay"></div>
     <div class="image-text">
@@ -111,15 +201,11 @@
     </div>
   </div>
 
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <p><strong>Phone:</strong> <a href="tel:+9779847232071">+977-9847232071</a></p>
-    <p><strong>Address:</strong> 3792+64J, Resunga 32600, Nepal </p>
-    <p><strong>Email:</strong> <a href="mailto:newmerotailors@gmail.com">newmerotailors@gmail.com</a></p>
-    <p><strong>Facebook:</strong> <a href="https://www.facebook.com/prem.kd.199536" target="_blank">fb.com/newmerotailors</a></p>
+  <section id="booking">
+    <h2>Order/Booking</h2>
+    <p>Please contact us via phone or email to place your order or schedule a fitting.</p>
   </section>
 
-  <!-- Image 3 -->
   <div class="image-section" style="background-image: url('https://images.pexels.com/photos/31867039/pexels-photo-31867039/free-photo-of-elegant-business-attire-with-wristwatch-focus.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
     <div class="image-overlay"></div>
     <div class="image-text">
@@ -127,9 +213,31 @@
     </div>
   </div>
 
+  <section id="access">
+    <h2>Find Us</h2>
+    <p>Visit our shop at Resunga, Gulmi. You can find us easily on the map below:</p>
+    <div style="width: 100%; max-width: 100%; height: 400px;">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d906.5015308872083!2d83.24962642848922!3d28.068080481868815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399641705325963b%3A0xc9b4ea2176b1ce6c!2sNew%20Mero%20Tailors!5e1!3m2!1sen!2sjp!4v1746327398823!5m2!1sen!2sjp" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 New Mero Tailors. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+    }
+  </script>
 
 </body>
 </html>
